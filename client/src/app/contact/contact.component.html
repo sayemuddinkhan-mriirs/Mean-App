@@ -1,0 +1,51 @@
+<div class="container">
+    <form #myForm="ngForm">
+        <fieldset>
+            <legend style=" text-align: center; width: fit-content;"><u>Personalized phonebook application</u></legend>
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter First name" [(ngModel)]="contactObject.first_name" #firstname="ngModel">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" name="lastname"  id="lastname" placeholder="Enter Last name"  [(ngModel)]="contactObject.last_name" #lastname="ngModel">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone no</label>
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter Phone no"  [(ngModel)]="contactObject.phone" #phone="ngModel">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+
+            <button type="button" class="btn btn-primary" (click)="onSubmit(myForm.value)" *ngIf="!isEdit">Submit</button>
+            <button type="button" class="btn btn-primary" (click)="onUpdate()" *ngIf="isEdit">Update</button>
+
+        </fieldset>
+        <br><br>
+    </form>
+
+
+    <legend> Contacts List</legend>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody *ngFor="let contact of contacts">
+            <td> {{contact.first_name}} </td>
+            <td> {{contact.last_name}} </td>
+            <td> {{contact.phone}} </td>
+            <td><button type="button" class="btn btn-danger" (click)="delete(contact)">Delete</button></td>
+            <td><button type="button" class="btn btn-warning" (click)="edit(contact)">Update</button></td>
+        </tbody>
+    </table>
+
+</div>
